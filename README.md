@@ -20,6 +20,7 @@ We need you to add the ability for a buyer to book a viewing. It’s unlikely a 
 
 ### Objective 3 - Review the existing code
 
+
 Write a short review of the existing sample codebase. Let us know what you think is good or bad about it. Feel free to fix any problems and commit these changes to the solution.
 
 ## Results
@@ -71,11 +72,17 @@ Naming wise classes, properties, fields etc. are consistently named and clear.
 The lack of exception handling is an obvious failing – try creating a property listing without a description. I would also like to see Application Insights integrated so that performance statistics can be easily captured, as well as providing a mechanism for recording exceptions and trace events.
 
 Given the desire to move to a microservice pattern, this web site could be split into several services. 
+
 •	Property Listing
+
 •	Property Browsing
+
 •	Offers
+
 •	Viewings
+
 •	User Management
+
 
 Each of these could then provide a light weight service that was focussed on only that area. This would reduce the complexity of the individual services i.e. The Offers service would need to have no awareness of the Viewings service. 
 
