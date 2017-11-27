@@ -1,0 +1,22 @@
+﻿@model OrangeBricks.Web.Controllers.Property.ViewModels.BookViewingViewModel
+@{
+    ViewBag.Title = "Book Viewing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Book Viewing</h2>
+<p>When would you like to view @Model.PropertyType on @Model.StreetName?</p>
+@using (Html.BeginForm("BookViewing", "Property", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Appointment, "Appointment", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.Hidden("PropertyId", Model.PropertyId) <!--This really needs to be a calendar and then a set of times that are available-->
+            @Html.TextBoxFor(m => m.Appointment, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Book Viewing" />
+        </div>
+    </div>
+}

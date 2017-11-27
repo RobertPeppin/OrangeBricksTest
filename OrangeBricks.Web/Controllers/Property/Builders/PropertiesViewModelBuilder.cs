@@ -47,7 +47,8 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
                 Description = property.Description,
                 NumberOfBedrooms = property.NumberOfBedrooms,
                 PropertyType = property.PropertyType,
-                Offers = property.Offers?.Where (o=>o.OfferingUserId == CurrentUserId).ToList()
+                Offers = property.Offers?.Where (o=>o.OfferingUserId == CurrentUserId).ToList(),
+                Viewings = property.Viewings?.Where (v=>v.BuyerId == CurrentUserId).ToList()
             };
 
             return vm;

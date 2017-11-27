@@ -29,6 +29,24 @@
     <h3>@property.StreetName</h3>
     <p>@property.NumberOfBedrooms bedroom @property.PropertyType</p>
     <p>@property.Description</p>
+
+    if (property.Viewings.Count == 0)
+    {
+        <p>You have no viewings for this property</p>
+        <a href="@Url.Action("BookViewing", "Property", new { id = property.Id })" class="btn btn-primary">
+            Book Viewing
+        </a>
+    }
+    else
+    {
+        <p>You have viewings for this property</p>
+        // list them
+        foreach (var viewing in property.Viewings)
+        {
+            <p>Viewing on <strong>@viewing.AppointmentTime</strong></p>
+        }
+    }
+
     if (property.Offers.Count > 0)
     {
         <p>You have made an offer on this property</p>
