@@ -9,14 +9,15 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
     public class PropertiesViewModelBuilder
     {
         private readonly IOrangeBricksContext _context;
-
+        private string CurrentUserId = "";
         public PropertiesViewModelBuilder(IOrangeBricksContext context)
         {
             _context = context;
         }
 
-        public PropertiesViewModel Build(PropertiesQuery query)
+        public PropertiesViewModel Build(PropertiesQuery query, string userId = "")
         {
+            CurrentUserId = userId;
             var properties = _context.Properties
                 .Where(p => p.IsListedForSale);
 
@@ -37,7 +38,7 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
             };
         }
 
-        private static PropertyViewModel MapViewModel(Models.Property property)
+        private PropertyViewModel MapViewModel(Models.Property property)
         {
             var vm = new PropertyViewModel
             {
@@ -46,7 +47,7 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
                 Description = property.Description,
                 NumberOfBedrooms = property.NumberOfBedrooms,
                 PropertyType = property.PropertyType,
-                Offers = property.Offers?.Where (o=>o.OfferingUserId == "").ToList()
+                Offers = property.Offers?.Where (o=>o.OfferingUserId == CurrentUserId).ToList()
             };
 
             return vm;

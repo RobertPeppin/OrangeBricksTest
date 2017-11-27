@@ -29,8 +29,18 @@
     <h3>@property.StreetName</h3>
     <p>@property.NumberOfBedrooms bedroom @property.PropertyType</p>
     <p>@property.Description</p>
-
-    <a href="@Url.Action("MakeOffer", "Property", new {id = property.Id})" class="btn btn-primary">
-        Make Offer
-    </a>
+    if (property.Offers.Count > 0)
+    {
+        <p>You have made an offer on this property</p>
+        // In reality a user could have placed more than one offer on a property, and showing the 
+        // status of the latest offer would be better (or a link to all of the offers they have made)
+        <p>Your offer is <strong>@property.Offers.First().Status</strong></p>
+        
+    }
+    else
+    {
+        <a href="@Url.Action("MakeOffer", "Property", new { id = property.Id })" class="btn btn-primary">
+            Make Offer
+        </a>
+    }
 }
