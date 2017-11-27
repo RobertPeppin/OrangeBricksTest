@@ -26,6 +26,7 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
                     || x.Description.Contains(query.Search));
             }
 
+            
             return new PropertiesViewModel
             {
                 Properties = properties
@@ -38,14 +39,17 @@ namespace OrangeBricks.Web.Controllers.Property.Builders
 
         private static PropertyViewModel MapViewModel(Models.Property property)
         {
-            return new PropertyViewModel
+            var vm = new PropertyViewModel
             {
                 Id = property.Id,
                 StreetName = property.StreetName,
                 Description = property.Description,
                 NumberOfBedrooms = property.NumberOfBedrooms,
-                PropertyType = property.PropertyType
+                PropertyType = property.PropertyType,
+                Offers = property.Offers?.Where (o=>o.OfferingUserId == "").ToList()
             };
+
+            return vm;
         }
     }
 }

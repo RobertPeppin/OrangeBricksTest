@@ -7,7 +7,7 @@ namespace OrangeBricks.Web.Models
     {
         [Key]
         public int Id { get; set; }
-
+        public string OfferingUserId { get; set; }
         public int Amount { get; set; }
 
         public OfferStatus Status { get; set; }
@@ -15,5 +15,7 @@ namespace OrangeBricks.Web.Models
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
+
+        public virtual Property Property {get;set; }
     }
 }
