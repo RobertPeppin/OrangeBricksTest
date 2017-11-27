@@ -17,7 +17,9 @@ namespace OrangeBricks.Web.Controllers.Property.Commands
 
         public void Handle(BookViewingCommand command)
         {
+
             var property = _context.Properties.Find(command.PropertyId);
+
             // TODO: last chance to look for double bookings.
             var viewing = new Viewing
             {
